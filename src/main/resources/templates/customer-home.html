@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Customer Home</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    h1 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+    .message {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .message h3 {
+        color: #e74c3c;
+    }
+    .message h4 {
+        color: #2ecc71;
+    }
+    .button-container {
+        text-align: center;
+    }
+    .button-container a, .button-container button {
+        display: block;
+        margin: 10px auto;
+        padding: 5px 20px;
+        background-color: #333;
+        color: white;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 200px; /* Fixed width for all buttons */
+        text-align: center;
+    }
+    .button-container a:hover, .button-container button:hover {
+        background-color: #555;
+    }
+</style>
+</head>
+<body>
+    <h1>Welcome to Customer Home page</h1>
+    <div class="message">
+        <h3 th:text="${session.fail}"></h3>
+        <h4 th:text="${session.pass}"></h4>
+        <th:block th:text="${@myService.removeMessage()}"></th:block>
+    </div>
+    <div class="button-container">
+        <a href="/view-products"><button>View All Products</button></a>
+        <a href="/view-cart"><button>View Cart</button></a>
+        <a href="/logout"><button>Logout</button></a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Seller Home Page</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #642B73; 
+background: -webkit-linear-gradient(to right, #C6426E, #642B73); 
+background: linear-gradient(to right, #C6426E, #642B73);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    h1 {
+        margin: 20px 0;
+        font-size: 2.5rem;
+        color: #333;
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 15px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .message {
+        width: 100%;
+        max-width: 600px;
+        margin: 20px 0;
+    }
+
+    .alert {
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 8px;
+        color: white;
+        font-size: 1.1rem;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .alert-success {
+        background-color: #4CAF50;
+    }
+
+    .alert-danger {
+        background-color: #F44336;
+    }
+
+    #btns {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    a button {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 15px 30px;
+        font-size: 1.1rem;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 250px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    a button:hover {
+        background-color: white;
+        color:black;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+</style>
+</head>
+<body>
+
+    <h1>Welcome to Seller Home Page</h1>
+
+    <div class="message">
+        <div th:if="${session.fail}" class="alert alert-danger" th:text="${session.fail}"></div>
+        <div th:if="${session.pass}" class="alert alert-success" th:text="${session.pass}"></div>
+        <th:block th:text="${@myService.removeMessage()}"></th:block>
+    </div>
+
+    <div id="btns">
+        <a href="/add-product"><button>Add Product</button></a>
+        <a href="/manage-products"><button>Manage Products</button></a>
+        <a href="/logout"><button>Logout</button></a>
+    </div>
+
+</body>
+</html>

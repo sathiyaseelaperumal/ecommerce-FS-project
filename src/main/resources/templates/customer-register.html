@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Registration</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    background: #642B73; 
+    background: -webkit-linear-gradient(to right, #C6426E, #642B73); 
+    background: linear-gradient(to right, #C6426E, #642B73);
+  }
+  .container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    gap: 60px;
+    background: black;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+  }
+  #signupbox {
+    flex: 1;
+    padding: 20px;
+    color: white;
+  }
+  .image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+   .image-container img{
+    border-radius: 10px;
+   }
+  .image-container div {
+    width: 100%;
+    max-width: 350px;
+    height: 300px;
+    background: url('https://via.placeholder.com/350x300') no-repeat center/cover;
+    border-radius: 10px;
+  }
+  h1 {
+    margin-bottom: 15px;
+    text-align: center;
+    color: green;
+  }
+  .message h3 {
+    color: #ff4d4d;
+  }
+  .message h4 {
+    color: #4dff88;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  label {
+    font-weight: 600;
+    color: white;
+  }
+  input {
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    outline: none;
+  }
+  input::placeholder {
+    color: white;
+  }
+  button {
+    background: green;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  button:hover {
+    background: darkgreen;
+  }
+  .footer {
+    margin-top: 15px;
+    font-size: 16px;
+    text-align: center;
+  }
+  .footer a {
+    text-decoration: none;
+    font-weight: bold;
+    color: green;
+  }
+  .footer a:hover {
+    color: darkgreen;
+  }
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      text-align: center;
+      gap: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div id="signupbox">
+    <h1>Customer Registration</h1>
+    <div class="message">
+      <h3 th:text="${session.fail}"></h3>
+      <h4 th:text="${session.pass}"></h4>
+      <th:block th:text="${@myService.removeMessage()}"></th:block>
+    </div>
+    <form action="/customer-signup" method="post">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required>
+      <label for="mobile">Mobile:</label>
+      <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" placeholder="Enter your mobile" required>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+      <button type="submit">Register</button>
+    </form>
+    <div class="footer">
+      <h2>Are you a Seller? <a href="/seller-signup">Click here</a></h2>
+    </div>
+  </div>
+  <div class="image-container">
+    <img height="200px" width="400px" src="/images/ecommerce.jpg" alt="">
+  </div>
+</div>
+</body>
+</html>

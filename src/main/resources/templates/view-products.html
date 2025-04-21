@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Products</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    h1 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+    .message {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .message h3 {
+        color: #e74c3c;
+    }
+    .message h4 {
+        color: #2ecc71;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    th, td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+    th {
+        background-color: #f4f4f4;
+    }
+    img {
+        max-width: 100px;
+        max-height: 100px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #555;
+    }
+    .back-button {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>View Products</h1>
+        <div class="message">
+            <h3 th:text="${session.fail}"></h3>
+            <h4 th:text="${session.pass}"></h4>
+            <th:block th:text="${@myService.removeMessage()}"></th:block>
+        </div>
+        <table>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Description</th>
+                <th>Size</th>
+                <th>Stock</th>
+                <th>Price</th>
+                <th>Add to Cart</th>
+            </tr>
+            <tr th:each="product:${list}">
+                <td><img th:src="'data:image/jpeg;base64,'+${product.base64Image()}" alt="Product Image"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.brand}"></td>
+                <td th:text="${product.description}"></td>
+                <td th:text="${product.size}"></td>
+                <td th:text="${product.stock}"></td>
+                <td th:text="${product.price}"></td>
+                <td><a th:href="'/add-cart/'+${product.id}"><button>Add</button></a></td>
+            </tr>
+        </table>
+        <div class="back-button">
+            <a href="/customer-home"><button>Back</button></a>
+        </div>
+    </div>
+</body>
+</html>
